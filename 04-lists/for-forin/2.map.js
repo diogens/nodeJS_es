@@ -1,9 +1,9 @@
 Array.prototype.meuMap = function(callback) {
   const novoArrayMapeado = [];
   for (let i = 0; i <= this.length - 1; i++) {
-    const resultado = callback([i], i);
+    const resultado = callback(this[i], i);
     novoArrayMapeado.push(resultado);
-    console.log("Result", novoArrayMapeado);
+    /* console.log("Result", novoArrayMapeado); */
   }
   return novoArrayMapeado;
 };
@@ -23,7 +23,11 @@ async function main() {
       return pessoa.name;
     }); */
 
-    const names = results.results.map(pessoa => pessoa.name);
+    /*  const names = results.results.map(pessoa => pessoa.name); */
+
+    const names = results.results.meuMap(function(pessoa, indice) {
+      return `[${indice}] ${pessoa.name}`;
+    });
 
     console.log("names", names);
   } catch (error) {
